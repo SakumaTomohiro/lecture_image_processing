@@ -16,6 +16,7 @@ imagesc(ORG); axis image; % 画像の表示
 
 グレースケールに変換した画像を図2に示す。
 ![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea20.jpg) 
+
 図２　グレースケール表示画像
 
 原画像を2階調生成するには、0-255の値を2つに分け、0-128と129-255とする。
@@ -38,7 +39,10 @@ imagesc(IMG); colormap(gray); colorbar;  axis image;
 4階調画像を図４に示す．
 
 ![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea2b.jpg)  
+
 図４ 4階調画像
+
+
 
 8階調画像は
 
@@ -55,4 +59,5 @@ imagesc(IMG); colormap(gray); colorbar;  axis image;
 とすればよい。8階調画像を図５に示す。
 
 ![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea2d.jpg)  
+
 図５　8階調画像
