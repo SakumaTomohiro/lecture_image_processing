@@ -8,40 +8,51 @@ imagesc(ORG); axis image; % 画像の表示
 ![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea1.jpg)  
 図1 原画像
 
-原画像を1/2サンプリングするには，画像を1/2倍に縮小した後，2倍に拡大すればよい．なお，拡大する際には，単純補間するために「box」オプションを設定する．
+続いて現画像をグレースケール画像に変換する。
 
-IMG = imresize(ORG,0.5); % 画像の縮小  
-IMG2 = imresize(IMG,2,'box'); % 画像の拡大
+ORG=imread('gekirea_daihyo-880x585.jpg'); % 原画像の入力
+ORG = rgb2gray(ORG); colormap(gray); colorbar;
+imagesc(ORG); axis image; % 画像の表示
 
-1/2サンプリングの結果を図２に示す．
+グレースケールに変換した画像を図2に示す。
+![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea2b.jpg) 
+図２　グレースケール表示画像
 
-![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea2.jpg)  
-図2 1/2サンプリング
+原画像を2階調生成するには、0-255の値を2つに分け、0-128と129-255とする。
 
-同様に原画像を1/4サンプリングするには，画像を1/2倍に縮小した後，2倍に拡大すればよい．すなわち，
+IMG = ORG>128; %現画像を2つに分ける
 
-IMG = imresize(ORG,0.5); % 画像の縮小  
-IMG2 = imresize(IMG,2,'box'); % 画像の拡大
+2階調画像をを図３に示す．
 
-とする．1/4サンプリングの結果を図３に示す．
+![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea2b.jpg)  
+図３　2階調画像
 
-![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea3.jpg)  
-図3 1/4サンプリング
+同様に原画像を4階調画像にするには，0-255の値を4分割すればよい．すなわち，0-64,65-128,129-192,193-255のようにする。
 
-1/8から1/32サンプリングは，
+IMG0 = ORG>64;
+IMG1 = ORG>128;
+IMG2 = ORG>192;
+IMG = IMG0 + IMG1 + IMG2;
+imagesc(IMG); colormap(gray); colorbar;  axis image;
 
-IMG = imresize(ORG,0.5); % 画像の縮小  
-IMG2 = imresize(IMG,2,'box'); % 画像の拡大
+4階調画像を図４に示す．
 
-を繰り返す．サンプリングの結果を図４～６に示す．
+![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea2c.jpg)  
+図４ 4階調画像
 
-![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea4.jpg)  
-図4 1/8サンプリング
+8階調画像は
 
-![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea5.jpg)  
-図5 1/16サンプリング
+IMG0 = ORG>32;
+IMG1 = ORG>64;
+IMG2 = ORG>96;
+IMG3 = ORG>128;
+IMG4 = ORG>160;
+IMG5 = ORG>192;
+IMG6 = ORG>224;
+IMG = IMG0 + IMG1 + IMG2 + IMG3 + IMG4 + IMG5 + IMG6;
+imagesc(IMG); colormap(gray); colorbar;  axis image;
 
-![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea6.jpg)  
-図6 1/32サンプリング
+とすればよい。8階調画像を図５に示す。
 
-このようにサンプリング幅が大きくなると，モザイク状のサンプリング歪みが発生する．
+![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/gekirea2d.jpg)  
+図５　8階調画像
