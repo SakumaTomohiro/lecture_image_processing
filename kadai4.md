@@ -24,3 +24,5 @@ imagesc(ORG); axis image; % 画像の表示
 imhist(ORG); % ヒストグラムの表示
 
 ![原画像](https://github.com/SakumaTomohiro/lecture_image_processing/blob/master/image/04histgram.jpg) 
+
+図3　画素の濃度ヒストグラム
